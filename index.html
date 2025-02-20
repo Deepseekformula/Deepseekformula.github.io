@@ -1,119 +1,192 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>DeepSeek-R1 本地部署指南</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek R1 完全指南</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2d333b;
-            --secondary-color: #6a737d;
-            --code-bg: #f6f8fa;
+            --deepseek-blue: #1a73e8;
+            --deepseek-gradient: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: var(--primary-color);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            padding-top: 60px;
         }
-        .download-btn {
-            background: #3498db;
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--deepseek-gradient);
+        }
+
+        .jumbotron {
+            background: var(--deepseek-gradient);
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 0;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+
+        .feature-card {
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        th, td {
-            border: 1px solid #e1e4e8;
-            padding: 8px;
-            text-align: left;
+
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
-        pre {
-            background: var(--code-bg);
-            padding: 16px;
-            overflow: auto;
-            border-radius: 6px;
+
+        .code-snippet {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         }
-        .alert {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
+
+        .version-badge {
+            background-color: var(--deepseek-blue);
+        }
+
+        .section-anchor {
+            scroll-margin-top: 80px;
         }
     </style>
 </head>
 <body>
-    <!-- 顶部下载按钮 -->
-    <div style="text-align: center;">
-        <a href="https://pan.quark.cn/s/efd7ad8b456e" class="download-btn">Windows一键安装包下载(v1.8.5)</a>
-        <p>文件大小：3.2GB | SHA256校验码：a1b2c3d4e5f6...</p>
-    </div>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">DeepSeek R1</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#deploy">部署指南</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#commands">指令手册</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#downloads">安装包</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- 部署前准备 -->
-    <h2>一、部署前准备</h2>
-    <h3>1.1 硬件要求</h3>
-    <table>
-        <tr><th>硬件类型</th><th>最低配置</th><th>推荐配置</th></tr>
-        <tr><td>显卡</td><td>NVIDIA GTX 1060 (6GB显存)</td><td>RTX 4080 (16GB显存)[1,6](@ref)</td></tr>
-        <tr><td>内存</td><td>16GB</td><td>32GB</td></tr>
-        <tr><td>存储</td><td>50GB可用空间</td><td>SSD固态硬盘</td></tr>
-        <tr><td>系统</td><td>Windows 10 / macOS 12 / Ubuntu 20.04</td><td>Windows 11</td></tr>
-    </table>
-    <div class="alert">
-        <strong>📌 注意事项：</strong>
-        <p>AMD 显卡用户需安装 25.1.1 版本驱动并配合 LM Studio 使用[6](@ref)</p>
-    </div>
+    <!-- 头部横幅 -->
+    <header class="jumbotron">
+        <div class="container text-center">
+            <h1 class="display-4 mb-4">DeepSeek R1 完全指南</h1>
+            <a href="#download" class="btn btn-light btn-lg">立即下载</a>
+        </div>
+    </header>
 
-    <!-- 核心部署流程 -->
-    <h2>二、核心部署流程</h2>
-    <h3>2.1 安装 Ollama 框架[2,5,6](@ref)</h3>
-    <h4>2.1.1 下载安装包</h4>
-    <p>访问 <a href="https://ollama.com/">Ollama官网</a> → 选择对应系统版本下载（Windows用户建议安装到C盘）</p>
-    <pre><code># Windows安装验证
-ollama -v
-# 输出类似：ollama version is 0.5.7</code></pre>
+    <!-- 主要内容 -->
+    <main class="container">
+        <!-- 部署指南 -->
+        <section id="deploy" class="section-anchor mb-5">
+            <h2 class="mb-4">📦 本地部署全攻略</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="feature-card card h-100 p-3">
+                        <img src="assets/deploy-step1.png" class="card-img-top" alt="环境准备">
+                        <div class="card-body">
+                            <h5>1. 环境准备</h5>
+                            <p>系统要求：</p>
+                            <ul>
+                                <li>Python ≥ 3.8</li>
+                                <li>CUDA 11.6+</li>
+                                <li>Docker 20.10+</li>
+                            </ul>
+                            <div class="code-snippet">
+                                <code>conda create -n deepseek python=3.9</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card card h-100 p-3">
+                        <img src="assets/deploy-step2.png" class="card-img-top" alt="安装流程">
+                        <div class="card-body">
+                            <h5>2. 安装流程</h5>
+                            <p>使用官方安装脚本：</p>
+                            <div class="code-snippet mb-3">
+                                <code>curl -sSL https://install.deepseek.com | bash</code>
+                            </div>
+                            <p>验证安装：</p>
+                            <div class="code-snippet">
+                                <code>deepseek --version</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h3>2.2 选择模型版本[1,3,6](@ref)</h3>
-    <table>
-        <tr><th>模型参数</th><th>CPU建议</th><th>GPU建议</th><th>内存建议</th><th>适用场景</th></tr>
-        <tr><td>1.5b</td><td>Intel i5 / AMD Ryzen 5</td><td>GTX 1650 (4GB)</td><td>8GB</td><td>文本生成</td></tr>
-        <tr><td>7b</td><td>Intel i7 / AMD Ryzen 7</td><td>RTX 3060 (12GB)</td><td>16GB</td><td>对话系统</td></tr>
-        <tr><td>14b</td><td>Intel i9 / AMD Ryzen 9</td><td>RTX 3090 (24GB)</td><td>32GB</td><td>知识问答</td></tr>
-    </table>
-    <pre><code># 启动7B模型
-ollama run deepseek-r1:7b</code></pre>
+        <!-- 指令手册 -->
+        <section id="commands" class="section-anchor mb-5">
+            <h2 class="mb-4">📚 核心指令手册</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>指令</th>
+                            <th>参数</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>deepseek init</code></td>
+                            <td>--model <em>MODEL_NAME</em></td>
+                            <td>初始化模型配置</td>
+                        </tr>
+                        <tr>
+                            <td><code>deepseek train</code></td>
+                            <td>--config <em>PATH</em></td>
+                            <td>启动训练流程</td>
+                        </tr>
+                        <!-- 更多指令行 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-    <!-- 常见问题 -->
-    <h2>三、常见问题解答</h2>
-    <div class="alert">
-        <h3>Q1: 安装后无法识别GPU[7,8](@ref)</h3>
-        <p>解决方案：更新NVIDIA驱动至535.86+版本，并验证CUDA安装</p>
-        <pre><code>nvidia-smi  # 验证驱动状态</code></pre>
-    </div>
+        <!-- 安装包下载 -->
+        <section id="downloads" class="section-anchor mb-5">
+            <h2 class="mb-4">📦 版本下载中心</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">稳定版 v1.2.3</h5>
+                            <span class="badge version-badge">推荐</span>
+                            <ul class="mt-2">
+                                <li>发布日期：2024-03-15</li>
+                                <li>文件大小：856MB</li>
+                                <li>SHA256：a1b2c3...d4e5f6</li>
+                            </ul>
+                            <a href="https://pan.quark.cn/s/b7c24e5378bd" class="btn btn-primary">下载</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 更多版本卡片 -->
+            </div>
+        </section>
+    </main>
 
-    <div class="alert">
-        <h3>Q2: 模型下载中断[2,5](@ref)</h3>
-        <p>使用断点续传命令：<code>ollama pull deepseek-r1:7b --resume</code></p>
-    </div>
-
-    <div class="alert">
-        <h3>Q3: 服务端口冲突[8](@ref)</h3>
-        <pre><code># 查看占用端口
-netstat -ano | findstr :11434
-# 修改服务端口
-ollama serve --port 11435</code></pre>
-    </div>
-
-    <footer style="margin-top: 40px; color: var(--secondary-color);">
-        <p>参考文档：<a href="https://ollama.com/docs">Ollama官方文档[2,5](@ref)</a>  | <a href="https://snowkylin.github.io/blogs/a-note-on-deepseek-r1.html">动态量化技术指南[3](@ref)</a> </p>
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p>© 2024 DeepSeek 开发者社区 | 问题反馈：support@deepseek.com</p>
+            <div class="social-links">
+                <a href="#" class="text-light mx-2">GitHub</a>
+                <a href="#" class="text-light mx-2">文档中心</a>
+                <a href="#" class="text-light mx-2">开发者论坛</a>
+            </div>
+        </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
