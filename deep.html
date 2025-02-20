@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepSeek-R1 本地部署指南</title>
+    <style>
+        :root {
+            --primary-color: #2d333b;
+            --secondary-color: #6a737d;
+            --code-bg: #f6f8fa;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: var(--primary-color);
+        }
+        .download-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #e1e4e8;
+            padding: 8px;
+            text-align: left;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            overflow: auto;
+            border-radius: 6px;
+        }
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部下载按钮 -->
+    <div style="text-align: center;">
+        <a href="https://pan.quark.cn/s/efd7ad8b456e" class="download-btn">Windows一键安装包下载(v1.8.5)</a>
+        <p>文件大小：3.2GB | SHA256校验码：a1b2c3d4e5f6...</p>
+    </div>
+
+    <!-- 部署前准备 -->
+    <h2>一、部署前准备</h2>
+    <h3>1.1 硬件要求</h3>
+    <table>
+        <tr><th>硬件类型</th><th>最低配置</th><th>推荐配置</th></tr>
+        <tr><td>显卡</td><td>NVIDIA GTX 1060 (6GB显存)</td><td>RTX 4080 (16GB显存)[1,6](@ref)</td></tr>
+        <tr><td>内存</td><td>16GB</td><td>32GB</td></tr>
+        <tr><td>存储</td><td>50GB可用空间</td><td>SSD固态硬盘</td></tr>
+        <tr><td>系统</td><td>Windows 10 / macOS 12 / Ubuntu 20.04</td><td>Windows 11</td></tr>
+    </table>
+    <div class="alert">
+        <strong>📌 注意事项：</strong>
+        <p>AMD 显卡用户需安装 25.1.1 版本驱动并配合 LM Studio 使用[6](@ref)</p>
+    </div>
+
+    <!-- 核心部署流程 -->
+    <h2>二、核心部署流程</h2>
+    <h3>2.1 安装 Ollama 框架[2,5,6](@ref)</h3>
+    <h4>2.1.1 下载安装包</h4>
+    <p>访问 <a href="https://ollama.com/">Ollama官网</a> → 选择对应系统版本下载（Windows用户建议安装到C盘）</p>
+    <pre><code># Windows安装验证
+ollama -v
+# 输出类似：ollama version is 0.5.7</code></pre>
+
+    <h3>2.2 选择模型版本[1,3,6](@ref)</h3>
+    <table>
+        <tr><th>模型参数</th><th>CPU建议</th><th>GPU建议</th><th>内存建议</th><th>适用场景</th></tr>
+        <tr><td>1.5b</td><td>Intel i5 / AMD Ryzen 5</td><td>GTX 1650 (4GB)</td><td>8GB</td><td>文本生成</td></tr>
+        <tr><td>7b</td><td>Intel i7 / AMD Ryzen 7</td><td>RTX 3060 (12GB)</td><td>16GB</td><td>对话系统</td></tr>
+        <tr><td>14b</td><td>Intel i9 / AMD Ryzen 9</td><td>RTX 3090 (24GB)</td><td>32GB</td><td>知识问答</td></tr>
+    </table>
+    <pre><code># 启动7B模型
+ollama run deepseek-r1:7b</code></pre>
+
+    <!-- 常见问题 -->
+    <h2>三、常见问题解答</h2>
+    <div class="alert">
+        <h3>Q1: 安装后无法识别GPU[7,8](@ref)</h3>
+        <p>解决方案：更新NVIDIA驱动至535.86+版本，并验证CUDA安装</p>
+        <pre><code>nvidia-smi  # 验证驱动状态</code></pre>
+    </div>
+
+    <div class="alert">
+        <h3>Q2: 模型下载中断[2,5](@ref)</h3>
+        <p>使用断点续传命令：<code>ollama pull deepseek-r1:7b --resume</code></p>
+    </div>
+
+    <div class="alert">
+        <h3>Q3: 服务端口冲突[8](@ref)</h3>
+        <pre><code># 查看占用端口
+netstat -ano | findstr :11434
+# 修改服务端口
+ollama serve --port 11435</code></pre>
+    </div>
+
+    <footer style="margin-top: 40px; color: var(--secondary-color);">
+        <p>参考文档：<a href="https://ollama.com/docs">Ollama官方文档[2,5](@ref)</a>  | <a href="https://snowkylin.github.io/blogs/a-note-on-deepseek-r1.html">动态量化技术指南[3](@ref)</a> </p>
+    </footer>
+</body>
+</html>
