@@ -102,6 +102,93 @@
             padding: 1.5rem;
         }
     }
+        /* 专业级资源展示样式 */
+.resource-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.resource-item {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.resource-item:hover {
+    transform: translateY(-5px);
+}
+
+.resource-thumb {
+    height: 200px;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+}
+
+.resource-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resource-meta {
+    padding: 1.5rem;
+}
+
+.resource-title {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+}
+
+.tech-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.tech-tags span {
+    background: #f8f9fa;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #3498db;
+    border: 1px solid #e0e7ff;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(52,152,219,0.3);
+}
+
+.highlight-item {
+    position: relative;
+    border: 2px solid #e74c3c;
+}
+
+.highlight-item::before {
+    content: "编辑推荐";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #e74c3c;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
     </style>
 </head>
 <body>
@@ -116,35 +203,118 @@
     </header>
 
     <main style="display:grid;grid-template-columns:3fr 1fr;gap:2rem">
-        <div class="articles">
-            <article class="article-card">
-                <h2>代码的伦理：我们正在构建怎样的数字世界？</h2>
-                <div class="article-date">2024年3月15日 • 技术哲学</div>
-                <p class="article-excerpt">在编写每一行代码时，我们是否思考过这些指令最终将如何影响人类社会的运行方式？当算法渗透到生活的每个角落，开发者是否应该承担起数字伦理守门人的责任...</p>
-            </article>
-
-            <article class="article-card">
-                <h2>工具理性批判：现代编程范式的哲学反思</h2>
-                <div class="article-date">2024年3月12日 • 技术批判</div>
-                <p class="article-excerpt">从面向对象到函数式编程，技术范式的演变背后是认知方式的革命。当我们追求更高效的代码时，是否正在失去对系统本质的理解能力？...</p>
-            </article>
+       <div class="resource-grid">
+    <!-- 资源项模板 -->
+    <div class="resource-item">
+        <div class="resource-thumb">
+            <img src="/wp-content/uploads/2024/03/video-editor-thumb.jpg" alt="智能剪辑工具">
         </div>
+        <div class="resource-meta">
+            <h3 class="resource-title">易剪媒 v1.0.0</h3>
+            <div class="resource-description">
+                <p>AI批量自动剪辑视频工具，支持智能场景识别与多轨道编辑</p>
+                <div class="tech-tags">
+                    <span>深度学习</span>
+                    <span>GPU加速</span>
+                    <span>多线程</span>
+                </div>
+            </div>
+            <a href="https://pan.quark.cn/s/8e319ae6045c" class="download-btn" target="_blank">
+                <i class="icon-download"></i>
+                <span>夸克网盘下载</span>
+            </a>
+        </div>
+    </div>
 
-        <aside class="sidebar">
-            <h3 class="widget-title">思想轨迹</h3>
-            <ul style="list-style:none;padding:0">
-                <li>▶ 数字存在主义</li>
-                <li>▶ 技术现象学</li>
-                <li>▶ 算法伦理学</li>
-            </ul>
+    <!-- 数据恢复工具 -->
+    <div class="resource-item">
+        <div class="resource-thumb">
+            <img src="/wp-content/uploads/2024/03/disk-tool-thumb.jpg" alt="磁盘管理">
+        </div>
+        <div class="resource-meta">
+            <h3 class="resource-title">DiskGenius 专业版</h3>
+            <div class="resource-description">
+                <p>支持分区管理、数据恢复、磁盘克隆的全能存储解决方案</p>
+                <div class="tech-tags">
+                    <span>NTFS加密</span>
+                    <span>RAID重组</span>
+                    <span>UEFI启动</span>
+                </div>
+            </div>
+            <a href="https://pan.quark.cn/s/cc974a08f399" class="download-btn" target="_blank">
+                <i class="icon-download"></i>
+                <span>夸克网盘下载</span>
+            </a>
+        </div>
+    </div>
 
-            <h3 class="widget-title">近期思考</h3>
-            <ul style="list-style:none;padding:0">
-                <li>人工智能的认知边界</li>
-                <li>开源运动的乌托邦困境</li>
-                <li>数字游民的生存哲学</li>
-            </ul>
-        </aside>
+    <!-- 图像处理工具 -->
+    <div class="resource-item highlight-item">
+        <div class="resource-thumb">
+            <img src="/wp-content/uploads/2024/03/photo-editor-thumb.jpg" alt="智能抠图">
+        </div>
+        <div class="resource-meta">
+            <h3 class="resource-title">鲜艺抠图 3.1 专业版</h3>
+            <div class="resource-description">
+                <p>基于神经网络的智能选区工具，支持发丝级精细处理</p>
+                <div class="tech-tags">
+                    <span>AI引擎</span>
+                    <span>GPU加速</span>
+                    <span>批量处理</span>
+                </div>
+            </div>
+            <a href="https://pan.quark.cn/s/69676a35bb47" class="download-btn" target="_blank">
+                <i class="icon-download"></i>
+                <span>夸克网盘下载</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 视频下载工具 -->
+    <div class="resource-item">
+        <div class="resource-thumb">
+            <img src="/wp-content/uploads/2024/03/video-downloader-thumb.jpg" alt="视频抓取">
+        </div>
+        <div class="resource-meta">
+            <h3 class="resource-title">4K视频下载器 专业版</h3>
+            <div class="resource-description">
+                <p>支持YouTube/哔哩哔哩等平台的8K视频下载</p>
+                <div class="tech-tags">
+                    <span>HDR支持</span>
+                    <span>字幕抓取</span>
+                    <span>批量队列</span>
+                </div>
+            </div>
+            <a href="https://pan.quark.cn/s/67c89cfb3045" class="download-btn" target="_blank">
+                <i class="icon-download"></i>
+                <span>夸克网盘下载</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 游戏修改器 -->
+    <div class="resource-item">
+        <div class="resource-thumb">
+            <img src="/wp-content/uploads/2024/03/game-mod-thumb.jpg" alt="游戏增强">
+        </div>
+        <div class="resource-meta">
+            <h3 class="resource-title">植物大战僵尸 无双版</h3>
+            <div class="resource-description">
+                <p>内置修改器支持无限阳光、解锁隐藏关卡等特性</p>
+                <div class="tech-tags">
+                    <span>内存修改</span>
+                    <span>MOD支持</span>
+                    <span>成就解锁</span>
+                </div>
+            </div>
+            <a href="https://pan.quark.cn/s/573c6518cf97" class="download-btn" target="_blank">
+                <i class="icon-download"></i>
+                <span>夸克网盘下载</span>
+            </a>
+        </div>
+    </div>
+</div>
+
     </main>
 
     <footer class="footer">
