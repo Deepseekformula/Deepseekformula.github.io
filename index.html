@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>knots3d,diskgenius,剪映破解版等热门工具推荐</title>
-    <meta name="description" content="knots3d,diskgenius,剪映破解版等热门工具推荐">
-    <meta name="keywords" content="knots3d,diskgenius,剪映破解版等热门工具推荐">
+    <title>技术工具库 | 专业软件资源推荐</title>
+    <meta name="description" content="精选DiskGenius、剪映破解版、3D绳结等专业工具下载">
+    <meta name="keywords" content="DiskGenius,剪映破解版,3D绳结,技术工具">
     <style>
     :root {
         --primary: #2C3E50;
         --accent: #3498DB;
         --text: #34495E;
-        --bg: #ECF0F1;
+        --bg: #F8F9FA;
     }
 
     body {
         font-family: 'Helvetica Neue', system-ui;
-        line-height: 1.8;
+        line-height: 1.6;
         color: var(--text);
         background: var(--bg);
         max-width: 1200px;
@@ -24,10 +24,11 @@
         padding: 20px;
     }
 
+    /* 头部导航 */
     .header {
         border-bottom: 3px solid var(--accent);
         padding: 2rem 0;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 
     .nav-menu {
@@ -35,55 +36,100 @@
         gap: 2rem;
         justify-content: center;
         margin: 1.5rem 0;
+        flex-wrap: wrap;
     }
 
     .nav-item {
         font-size: 1.1rem;
         color: var(--primary);
         transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
     }
 
     .nav-item:hover {
         color: var(--accent);
+        background: rgba(52,152,219,0.1);
         transform: translateY(-2px);
     }
 
-    .article-card {
+    /* 主体内容 */
+    .resource-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding: 1rem 0;
+    }
+
+    .resource-item {
         background: white;
         border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        padding: 2rem;
-        margin-bottom: 2rem;
-        transition: transform 0.3s ease;
-    }
-
-    .article-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .article-date {
-        color: #7F8C8D;
-        font-size: 0.9rem;
-    }
-
-    .article-excerpt {
-        color: #666;
-        margin: 1rem 0;
-    }
-
-    .sidebar {
-        background: rgba(255,255,255,0.9);
         padding: 1.5rem;
-        border-radius: 12px;
-    }
-
-    .widget-title {
-        color: var(--primary);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
         border-left: 4px solid var(--accent);
-        padding-left: 1rem;
-        margin: 1.5rem 0;
     }
 
+    .resource-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .resource-title {
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .resource-title::before {
+        content: "▹";
+        color: var(--accent);
+        font-size: 1.4em;
+    }
+
+    .resource-description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.2rem;
+    }
+
+    .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-tags span {
+        background: #E3F2FD;
+        color: #1976D2;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .download-btn {
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        text-align: center;
+        background: linear-gradient(135deg, var(--accent), #2980B9);
+        color: white;
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+    }
+
+    .download-btn:hover {
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(52,152,219,0.3);
+    }
+
+    /* 页脚 */
     .footer {
         border-top: 1px solid #ddd;
         padding: 2rem 0;
@@ -94,232 +140,125 @@
 
     @media (max-width: 768px) {
         .nav-menu {
-            flex-direction: column;
-            align-items: center;
+            gap: 1rem;
+            justify-content: start;
+            padding: 0 1rem;
         }
         
-        .article-card {
-            padding: 1.5rem;
+        .resource-grid {
+            grid-template-columns: 1fr;
+            padding: 0 1rem;
+        }
+        
+        .resource-item {
+            padding: 1.2rem;
         }
     }
-        /* 专业级资源展示样式 */
-.resource-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.resource-item {
-    background: rgba(255,255,255,0.95);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.resource-item:hover {
-    transform: translateY(-5px);
-}
-
-.resource-thumb {
-    height: 200px;
-    border-radius: 12px 12px 0 0;
-    overflow: hidden;
-}
-
-.resource-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.resource-meta {
-    padding: 1.5rem;
-}
-
-.resource-title {
-    font-size: 1.25rem;
-    color: #2c3e50;
-    margin-bottom: 0.75rem;
-}
-
-.tech-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin: 1rem 0;
-}
-
-.tech-tags span {
-    background: #f8f9fa;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: #3498db;
-    border: 1px solid #e0e7ff;
-}
-
-.download-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.download-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(52,152,219,0.3);
-}
-
-.highlight-item {
-    position: relative;
-    border: 2px solid #e74c3c;
-}
-
-.highlight-item::before {
-    content: "编辑推荐";
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: #e74c3c;
-    color: white;
-    padding: 0.25rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-}
     </style>
 </head>
 <body>
     <header class="header">
-        <h1 style="text-align:center;font-size:2.5rem;color:var(--primary)">技术沉思录</h1>
+        <h1 style="text-align:center;font-size:2rem;color:var(--primary)">专业技术工具库</h1>
         <nav class="nav-menu">
             <a href="/" class="nav-item">首页</a>
             <a href="https://jianyingcracking.github.io" class="nav-item">剪映破解版</a>
-            <a href="https://diskgeniusapp.github.io/" class="nav-item">DiskGenius v5.6.1</a>
+            <a href="https://diskgeniusapp.github.io/" class="nav-item">DiskGenius</a>
             <a href="https://knots3dapp.github.io/" class="nav-item">3D绳结</a>
         </nav>
     </header>
 
-    <main style="display:grid;grid-template-columns:3fr 1fr;gap:2rem">
-       <div class="resource-grid">
-    <!-- 资源项模板 -->
-    <div class="resource-item">
-        <div class="resource-thumb">
-            <img src="/wp-content/uploads/2024/03/video-editor-thumb.jpg" alt="智能剪辑工具">
-        </div>
-        <div class="resource-meta">
-            <h3 class="resource-title">易剪媒 v1.0.0</h3>
-            <div class="resource-description">
-                <p>AI批量自动剪辑视频工具，支持智能场景识别与多轨道编辑</p>
-                <div class="tech-tags">
-                    <span>深度学习</span>
-                    <span>GPU加速</span>
-                    <span>多线程</span>
+    <main>
+        <div class="resource-grid">
+            <div class="resource-item">
+                <div class="resource-meta">
+                    <h3 class="resource-title">易剪媒 v1.0.0</h3>
+                    <div class="resource-description">
+                        AI视频批量处理工具｜支持多轨道智能剪辑与深度学习场景识别
+                    </div>
+                    <div class="tech-tags">
+                        <span>GPU加速</span>
+                        <span>多线程</span>
+                        <span>智能渲染</span>
+                    </div>
+                    <a href="https://pan.quark.cn/s/8e319ae6045c" class="download-btn" target="_blank">
+                        立即下载
+                    </a>
                 </div>
             </div>
-            <a href="https://pan.quark.cn/s/8e319ae6045c" class="download-btn" target="_blank">
-                <i class="icon-download"></i>
-                <span>夸克网盘下载</span>
-            </a>
-        </div>
-    </div>
 
-    <!-- 数据恢复工具 -->
-    <div class="resource-item">
-        <div class="resource-thumb">
-            <img src="/wp-content/uploads/2024/03/disk-tool-thumb.jpg" alt="磁盘管理">
-        </div>
-        <div class="resource-meta">
-            <h3 class="resource-title">DiskGenius 专业版</h3>
-            <div class="resource-description">
-                <p>支持分区管理、数据恢复、磁盘克隆的全能存储解决方案</p>
-                <div class="tech-tags">
-                    <span>NTFS加密</span>
-                    <span>RAID重组</span>
-                    <span>UEFI启动</span>
+            <div class="resource-item">
+                <div class="resource-meta">
+                    <h3 class="resource-title">DiskGenius 专业版</h3>
+                    <div class="resource-description">
+                        全功能磁盘管理套件｜支持RAID重组与UEFI启动配置
+                    </div>
+                    <div class="tech-tags">
+                        <span>数据恢复</span>
+                        <span>分区加密</span>
+                        <span>NTFS工具</span>
+                    </div>
+                    <a href="https://pan.quark.cn/s/cc974a08f399" class="download-btn" target="_blank">
+                        立即下载
+                    </a>
                 </div>
             </div>
-            <a href="https://pan.quark.cn/s/cc974a08f399" class="download-btn" target="_blank">
-                <i class="icon-download"></i>
-                <span>夸克网盘下载</span>
-            </a>
-        </div>
-    </div>
 
-    <!-- 图像处理工具 -->
-    <div class="resource-item highlight-item">
-        <div class="resource-thumb">
-            <img src="/wp-content/uploads/2024/03/photo-editor-thumb.jpg" alt="智能抠图">
-        </div>
-        <div class="resource-meta">
-            <h3 class="resource-title">鲜艺抠图 3.1 专业版</h3>
-            <div class="resource-description">
-                <p>基于神经网络的智能选区工具，支持发丝级精细处理</p>
-                <div class="tech-tags">
-                    <span>AI引擎</span>
-                    <span>GPU加速</span>
-                    <span>批量处理</span>
+            <div class="resource-item">
+                <div class="resource-meta">
+                    <h3 class="resource-title">鲜艺抠图 3.1</h3>
+                    <div class="resource-description">
+                        基于神经网络的智能选区工具｜发丝级精度与批量处理支持
+                    </div>
+                    <div class="tech-tags">
+                        <span>AI引擎</span>
+                        <span>GPU加速</span>
+                        <span>PS插件</span>
+                    </div>
+                    <a href="https://pan.quark.cn/s/69676a35bb47" class="download-btn" target="_blank">
+                        立即下载
+                    </a>
                 </div>
             </div>
-            <a href="https://pan.quark.cn/s/69676a35bb47" class="download-btn" target="_blank">
-                <i class="icon-download"></i>
-                <span>夸克网盘下载</span>
-            </a>
-        </div>
-    </div>
 
-    <!-- 视频下载工具 -->
-    <div class="resource-item">
-        <div class="resource-thumb">
-            <img src="/wp-content/uploads/2024/03/video-downloader-thumb.jpg" alt="视频抓取">
-        </div>
-        <div class="resource-meta">
-            <h3 class="resource-title">4K视频下载器 专业版</h3>
-            <div class="resource-description">
-                <p>支持YouTube/哔哩哔哩等平台的8K视频下载</p>
-                <div class="tech-tags">
-                    <span>HDR支持</span>
-                    <span>字幕抓取</span>
-                    <span>批量队列</span>
+            <div class="resource-item">
+                <div class="resource-meta">
+                    <h3 class="resource-title">4K视频下载器</h3>
+                    <div class="resource-description">
+                        多平台视频抓取工具｜支持8K HDR与字幕批量下载
+                    </div>
+                    <div class="tech-tags">
+                        <span>多线程</span>
+                        <span>智能解析</span>
+                        <span>元数据保存</span>
+                    </div>
+                    <a href="https://pan.quark.cn/s/67c89cfb3045" class="download-btn" target="_blank">
+                        立即下载
+                    </a>
                 </div>
             </div>
-            <a href="https://pan.quark.cn/s/67c89cfb3045" class="download-btn" target="_blank">
-                <i class="icon-download"></i>
-                <span>夸克网盘下载</span>
-            </a>
-        </div>
-    </div>
 
-    <!-- 游戏修改器 -->
-    <div class="resource-item">
-        <div class="resource-thumb">
-            <img src="/wp-content/uploads/2024/03/game-mod-thumb.jpg" alt="游戏增强">
-        </div>
-        <div class="resource-meta">
-            <h3 class="resource-title">植物大战僵尸 无双版</h3>
-            <div class="resource-description">
-                <p>内置修改器支持无限阳光、解锁隐藏关卡等特性</p>
-                <div class="tech-tags">
-                    <span>内存修改</span>
-                    <span>MOD支持</span>
-                    <span>成就解锁</span>
+            <div class="resource-item">
+                <div class="resource-meta">
+                    <h3 class="resource-title">植物大战僵尸 无双版</h3>
+                    <div class="resource-description">
+                        经典游戏增强版｜内置无限阳光与隐藏关卡解锁
+                    </div>
+                    <div class="tech-tags">
+                        <span>内存修改</span>
+                        <span>MOD支持</span>
+                        <span>成就系统</span>
+                    </div>
+                    <a href="https://pan.quark.cn/s/573c6518cf97" class="download-btn" target="_blank">
+                        立即下载
+                    </a>
                 </div>
             </div>
-            <a href="https://pan.quark.cn/s/573c6518cf97" class="download-btn" target="_blank">
-                <i class="icon-download"></i>
-                <span>夸克网盘下载</span>
-            </a>
         </div>
-    </div>
-</div>
-
     </main>
 
     <footer class="footer">
-        <p>© 2024 技术沉思录 - 保持质疑，持续思考</p>
-        <p>知识共享协议 CC BY-NC-ND 4.0</p>
+        <p>© 2024 专业技术工具库</p>
+        <p>资源仅供学习交流，请于24小时内删除</p>
     </footer>
 </body>
 </html>
